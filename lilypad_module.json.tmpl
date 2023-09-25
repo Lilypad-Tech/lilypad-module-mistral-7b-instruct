@@ -14,20 +14,22 @@
             "Deal": {
                 "Concurrency": 1
             },
-            "Docker": {
-                "Entrypoint": [
-                    "bash", "-c",
-                    "python3 inference.py 2>/dev/null"
-                ],
-                "Image": "quay.io/lukemarsden/sdxl:v0.9-lilypad1-v2",
-                "EnvironmentVariables": [
-                    {{if .PromptEnv}}{{.PromptEnv}}{{else}}"PROMPT=question mark floating in space"{{end}},
-                    {{if .SeedEnv}}{{.SeedEnv}}{{else}}"RANDOM_SEED=42"{{end}},
-                    "OUTPUT_DIR=/outputs/",
-                    "HF_HUB_OFFLINE=1"
-                ]
+            "EngineSpec": {
+                "Params": {
+                    "Parameters": [
+                        "bash", "-c",
+                        "python3 inference.py 2>/dev/null"
+                    ],
+                    "Image": "quay.io/lukemarsden/sdxl:v0.9-lilypad1-v2",
+                    "EnvironmentVariables": [
+                        {{if .PromptEnv}}{{.PromptEnv}}{{else}}"PROMPT=question mark floating in space"{{end}},
+                        {{if .SeedEnv}}{{.SeedEnv}}{{else}}"RANDOM_SEED=42"{{end}},
+                        "OUTPUT_DIR=/outputs/",
+                        "HF_HUB_OFFLINE=1"
+                    ]
+                },
+                "Type": "docker"
             },
-            "Engine": "Docker",
             "Language": {
                 "JobContext": {}
             },
@@ -35,21 +37,17 @@
                 "Type": "None"
             },
             "PublisherSpec": {
-                "Type": "Estuary"
+                "Type": "ipfs"
             },
             "Resources": {
                 "GPU": "1"
             },
             "Timeout": 1800,
-            "Verifier": "Noop",
-            "Wasm": {
-                "EntryModule": {}
-            },
-            "outputs": [
+            "Outputs": [
                 {
                     "Name": "outputs",
                     "StorageSource": "IPFS",
-                    "path": "/outputs"
+                    "Path": "/outputs"
                 }
             ]
         }
