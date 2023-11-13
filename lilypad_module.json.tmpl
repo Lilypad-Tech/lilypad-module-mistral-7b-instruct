@@ -19,9 +19,9 @@
                     "bash", "-c",
                     "python3 inference.py 2>/dev/null"
                 ],
-                "Image": "quay.io/lukemarsden/sdxl:v0.9-lilypad1-v2",
+                "Image": "quay.io/lukemarsden/axolotl:v0.0.2",
                 "EnvironmentVariables": [
-                    {{if .PromptEnv}}{{.PromptEnv}}{{else}}"PROMPT=question mark floating in space"{{end}},
+                    {{if .PromptEnv}}{{.PromptEnv}}{{else}}"PROMPT=say give me a prompt"{{end}},
                     {{if .SeedEnv}}{{.SeedEnv}}{{else}}"RANDOM_SEED=42"{{end}},
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
