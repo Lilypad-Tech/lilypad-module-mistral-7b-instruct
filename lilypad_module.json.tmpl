@@ -18,7 +18,7 @@
                 "Entrypoint": [
                     "python", "-u", "-m", "axolotl.cli.inference", "examples/mistral/qlora-instruct.yml"
                 ],
-                "Image": "quay.io/lukemarsden/axolotl:v0.0.2",
+                "Image": "quay.io/lukemarsden/axolotl:v0.0.4",
                 "EnvironmentVariables": [
                     {{if .PromptEnv}}{{.PromptEnv}}{{else}}"PROMPT=say give me a prompt"{{end}},
                     {{if .SeedEnv}}{{.SeedEnv}}{{else}}"RANDOM_SEED=42"{{end}},
